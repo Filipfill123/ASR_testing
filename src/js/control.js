@@ -166,6 +166,7 @@ $( document ).ready(function() {
             console.log("ASR message with result: ", msg)
             hlog("<b>Rozpoznáno: </b>" + msg.result);
             var leven = levenshteinDistance(tts_to_say, msg.result)
+            var sim = 1 - leven/Math.max(tts_to_say.length, msg.result.length)
             hlog("<b>Vzdálenost Levenshtein: </b>" + leven)
             //hlog("\n");
             
