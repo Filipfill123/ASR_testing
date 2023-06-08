@@ -167,7 +167,7 @@ $( document ).ready(function() {
             hlog("<b>Rozpoznáno: </b>" + msg.result);
             var leven = levenshteinDistance(tts_to_say, msg.result)
             var sim = 1 - leven/Math.max(tts_to_say.length, msg.result.length)
-            hlog("<b>Vzdálenost Levenshtein: </b>" + leven)
+            hlog("<b>Vzdálenost Levenshtein: </b>" + sim)
             //hlog("\n");
             
         }
