@@ -13,13 +13,14 @@ $( document ).ready(function() {
             var btn = document.getElementById("asr_start_stop")
             btn.textContent = "Start ASR"
             do_pause()
-            do_tts(tts_to_say)
+            
         }
         else if (!recognizing){
             console.log("starting ASR")
             var btn = document.getElementById("asr_start_stop")
             btn.textContent = "Stop ASR"
             do_recognize()
+            do_tts(tts_to_say)
         }
     });
 
@@ -66,7 +67,7 @@ $( document ).ready(function() {
      * @param speech
      */
     function setSignal (level, speech) {
-        console.log("set signal function")
+        //console.log("set signal function")
         var val_gr, val_rd;
         var RED_SIGNAL = 5.1;
 
