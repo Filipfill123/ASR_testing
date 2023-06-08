@@ -4,29 +4,16 @@ $( document ).ready(function() {
     var recognizing = false;
     var asrPausedForTts = false;
 
-    var dict_of_numbers = {"jedna":1, "dva": 2, "tři": 3, "čtyři": 4, "pět": 5, "šest": 6, "sedm": 7, "osm": 8, "devět": 9, "deset": 10}
-
-    $("#send_message_empty").click(function () {
-        data = {};
-        speechCloud.dm_send_message({data: data});
-        do_tts("Žiju a poslouchám", "Iva30")
-    });
-
-    $("#send_number").click(function () {
-        var number_to_square = document.getElementById("number_to_calculate").value
-        var number_to_say = number_to_square.toString()
-        var number_squared = number_to_square*number_to_square
-        var number_squared_to_say = number_squared.toString()
-        do_tts("Druhá mocnina čísla " + number_to_say + " je " + number_squared_to_say, "Iva30")
-        document.getElementById("number_to_calculate").value = 0
-    });
+    var tts_to_say = "Toto je zkouška ASR systému číslo ASR systému"
 
     $("#asr_start_stop").click(function () {
         if (recognizing){
             console.log("stopping ASR")
+            
             var btn = document.getElementById("asr_start_stop")
             btn.textContent = "Start ASR"
             do_pause()
+            do_tts(tts_to_say)
         }
         else if (!recognizing){
             console.log("starting ASR")
@@ -64,20 +51,9 @@ $( document ).ready(function() {
         
     }
 
-    /* Přerušení syntézy zasláním zprávy tts_stop */
-    function do_tts_stop() {
-        asrPausedForTts = false;
-        console.log("Sending tts_stop");
-        speechCloud.tts_stop();
-    }
-
     /* Syntéza řeči */
     function do_tts(text, voice) {
-        if (recognizing){
-            asrPausedForTts = true;
-            do_pause()
-        }
-        console.log("doing tts: ", text, voice)
+        hlog("<b>Řečeno: </b>" + text);
         speechCloud.tts_synthesize({text: text, voice: voice});
     }
 
@@ -150,7 +126,7 @@ $( document ).ready(function() {
     /* Proměnná, do které se uloží timeout pro SIP zavolání */
     var call_timeout = null;
 
-    var model_uri = " https://cak.zcu.cz:9443/v1/speechcloud/devel_polakf_mocniny"
+    var model_uri = " https://cak.zcu.cz:9443/v1/speechcloud/devel_polakf_asrtesting"
     var options = {
         uri: model_uri,
         tts: "#audioout",
@@ -172,7 +148,7 @@ $( document ).ready(function() {
         hlog("<b>ASR ready</b>");
         //hlog("\n");
         // do_tts("Dobrý den, jsem vaše virtuální mocnina Karel. Zadejte číslo pro mocnění, nebo můžete stisknout otazník, abyste věděli, jestli Vás poslouchám.", "Iva30")
-        do_tts("Dobrý den. Zadejte číslo, nebo zmáčkněte tlačítko ASR a řekněte číslo od jedné do deseti.", "Iva30")
+        do_tts("Dobrý den. Zmáčkněte tlačítko Start ASR a provedu test ASR pomocí TTS.", "Iva30")
         //document.getElementById("recognizeSpan").style.backgroundColor = "green"
     });
 
@@ -188,19 +164,9 @@ $( document ).ready(function() {
         else if(msg.result){
             console.log("ASR message with result: ", msg)
             hlog("<b>Rozpoznáno: </b>" + msg.result);
+            var leven = levenshteinDistance(tts_to_say, msg.result)
+            hlog("<b>Vzdálenost Levenshtein: </b>" + leven)
             //hlog("\n");
-                if (msg.word_1best in dict_of_numbers){
-                    var number_to_square = dict_of_numbers[msg.word_1best]
-                    var number_to_say = number_to_square.toString()
-                    var number_squared = number_to_square*number_to_square
-                    var number_squared_to_say = number_squared.toString()
-                    do_tts("Druhá mocnina čísla " + number_to_say + " je " + number_squared_to_say, "Iva30")
-                    document.getElementById("number_to_calculate").value = 0
-                }
-                else {
-                    
-                    do_tts("Toto je demo, umím pouze čísla od jedničky do desítky.", "Iva30")
-                }
             
         }
 
@@ -215,11 +181,6 @@ $( document ).ready(function() {
 
     speechCloud.on('tts_done', function(msg){
         console.log("tts done: ", msg)
-        if(asrPausedForTts){
-            asrPausedForTts = false;
-            console.log("tts done - recognizing asr")
-            do_recognize()
-        }
         
     });
 
@@ -235,6 +196,27 @@ $( document ).ready(function() {
         
     });
 
+    const levenshteinDistance = (str1 = '', str2 = '') => {
+        const track = Array(str2.length + 1).fill(null).map(() =>
+        Array(str1.length + 1).fill(null));
+        for (let i = 0; i <= str1.length; i += 1) {
+           track[0][i] = i;
+        }
+        for (let j = 0; j <= str2.length; j += 1) {
+           track[j][0] = j;
+        }
+        for (let j = 1; j <= str2.length; j += 1) {
+           for (let i = 1; i <= str1.length; i += 1) {
+              const indicator = str1[i - 1] === str2[j - 1] ? 0 : 1;
+              track[j][i] = Math.min(
+                 track[j][i - 1] + 1, // deletion
+                 track[j - 1][i] + 1, // insertion
+                 track[j - 1][i - 1] + indicator, // substitution
+              );
+           }
+        }
+        return track[str2.length][str1.length];
+     };
 
     
     speechCloud.init();
