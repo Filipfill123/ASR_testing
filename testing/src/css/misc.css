@@ -1,0 +1,94 @@
+.label {
+    margin: 2px;
+}
+
+html {
+    background: url('../images/apis-70227_1920.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    background-color: transparent;
+    font-family: Calibri, sans-serif;
+}
+
+.panel {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.progress {
+    height: 25px;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+.btn {
+    white-space: normal;
+}
+
+.choice {
+    padding: 11px 2px 11px 2px;
+}
+
+.btn-group div{
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.choice:not(.active){
+    background-color: lightgray;
+    color: black;
+    border-color: gray;
+}
+
+.recog {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    width:100%;
+}
+
+.center {
+    text-align: center;
+}
+
+#log {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 5em;
+}
+
+#startstop {
+    border-left: 1px solid black;
+}
+
+.ignored{
+    color: red;
+}
+
+img {
+    border-radius: 15px; 
+    width: 250px;
+}
+body {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+}
+.imgDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inputDiv {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
