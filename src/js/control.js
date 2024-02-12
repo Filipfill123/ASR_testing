@@ -79,3 +79,18 @@ function startTimer() {
             clearInterval(countdown);
             }
     }, 1000);}
+
+    function appReset() {
+
+        Swal.fire({
+            title: 'Konec testu',
+            text: 'Po stisknutí OK se refreshne stránka',
+            position: 'top',
+            customClass: 'custom-swal-modal', // Apply your custom class
+            allowOutsideClick: false,
+            showConfirmButton: true,
+            confirmButtonText: "Ok"
+          }).then(() => {
+            location.reload()
+          });
+    }

@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>
@@ -116,18 +117,18 @@
 
                 if (msg.partial_result) {
                     console.log("asr msg partial result: ", msg.partial_result)
-                    hlogAsr("ASR partial result: " ,msg.partial_result)
+                    hlogAsr("ASR partial result: " + msg.partial_result)
                 }
                 else if(msg.result){
                     console.log("asr msg result: ", msg.result)
-                    hlogAsr("ASR full result: ", msg.result)
+                    hlogAsr("ASR full result: "+ msg.result)
                 }
 
             });
             /* Při příchodu SLU výsledku */
             speechCloud.on('slu_result', function (msg) {
                 console.log("slu msg result: ", msg.result)
-                hlogSlu("SLU result: ", msg.result)
+                hlogSlu("SLU result: "+ msg.result)
             });
 
         })
