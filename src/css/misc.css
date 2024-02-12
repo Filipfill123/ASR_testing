@@ -24,9 +24,12 @@ body {
   }
   
 img {
-    display: block;
-    margin: 0 auto;
-    transform: translateX(-10%);
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 2px solid rgb(12, 12, 12);
   }
   
 .panel {
@@ -55,11 +58,9 @@ img {
 #logSLU {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 5em;
 }
 
 #logASR {
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 5em;
 }
