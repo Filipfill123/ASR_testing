@@ -32,12 +32,13 @@ img {
 }
 
 .image-container {
-    margin-top: 50px;
+    margin-top: 10px;
     text-align: center; /* Center the image horizontally */
+
   }
   
   .image-container img {
-    margin-left: 10%; /* Move the image a bit to the left */
+    margin-left: 35%; /* Move the image a bit to the left */
   }
   
   .panels-container {
@@ -51,7 +52,7 @@ img {
     background-color: #f9f9f9;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-height: 150px;
+    max-height: 125px;
   }
 
 
