@@ -46,14 +46,14 @@ body {
 
 }
 .float-container {
-    /* border: 3px solid #1b0404; */
+    border: 3px solid #1b0404;
     padding-top: 10px;
     height: 95%;
     margin: 0px 0px 0px 0px
 }
 
 .float-container-top {
-    /* border: 3px solid #f60808; */
+    border: 3px solid #f60808;
     /* border-bottom: 0.5px solid; */
     padding-top: 0px;
     height: 7%;
@@ -63,7 +63,7 @@ body {
 }
 
 .float-container-top-left {
-    /* border: 3px solid #f60808; */
+    border: 3px solid #f60808;
     margin-left: 20px;
     padding-top: 0px;
     width: 50%;
@@ -74,7 +74,7 @@ body {
 }
 
 .float-container-top-right {
-    /* border: 3px solid #1b0404; */
+    border: 3px solid #041b11;
     padding-top: 0px;
     margin-right: 20px;
     width: 50%;
@@ -85,17 +85,11 @@ body {
 }
 
 .whole-float-container {
-    /* border: 3px solid #1b0404; */
+    border: 3px solid #1b0404;
     padding-top: 5px;
     height: 95%;
     margin: 0px 0px 0px 0px
 }
-.float-child {
-    width: 40%;
-    float: left;
-    padding: 20px;
-    margin-left: 5%
-}  
 .custom-swal-modal {
     width: 450px; /* Adjust the width as needed */
     top: 50px;    /* Adjust the top position as needed */
