@@ -30,13 +30,26 @@ img {
   }
   
 .panel {
-    width: 95%;
-    max-width: 900px;
+    width: 45%;
     max-height: 350px;
     margin: 20px auto;
     background-color: #f9f9f9;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .image-container {
+    margin-top: 50px;
+    text-align: center; /* Center the image horizontally */
+  }
+  
+  .image-container img {
+    margin-left: -10%; /* Move the image a bit to the left */
+  }
+  
+  .panels-container {
+    display: flex;
+    justify-content: center; /* Center the panels horizontally */
   }
 
 #logSLU {
