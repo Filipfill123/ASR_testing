@@ -18,7 +18,13 @@ body {
 }
 
 
-.log {
+#logSLU {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 5em;
+}
+
+#logASR {
     overflow-y: scroll;
     overflow-x: hidden;
     height: 5em;
