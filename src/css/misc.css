@@ -3,13 +3,13 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  .container {
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
-  .header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,18 +18,18 @@ body {
     background-color: #f0f0f0;
   }
   
-  .content {
+.content {
     position: relative;
     margin-top: 50px;
   }
   
-  img {
+img {
     display: block;
     margin: 0 auto;
     transform: translateX(-10%);
   }
   
-  .panel {
+.panel {
     width: 80%;
     max-width: 600px;
     margin: 20px auto;
@@ -37,3 +37,15 @@ body {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
+
+#logSLU {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 5em;
+}
+
+#logASR {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 5em;
+}

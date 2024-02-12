@@ -28,17 +28,25 @@
 <body>
     <div class="container">
       <div class="header">
-        <button id="startButton">Start</button>
-        <button id="stopButton">Stop</button>
-        <div id="countdown">10</div>
+        <button id="startButton" onclick="startButton()">Start</button>
+        <button id="stopButton" onclick="stopButton()">Stop</button>
+        <div id="countdownDiv">
+            <span id="countdown" style="margin-top: 10px; margin-left: 25px; font-size: large;">30s</span>
+        </div>
       </div>
       <div class="content">
         <img class="centerImage" src="./obrazek_barevny.jpg" width="50%" height="45%" alt="Image not loaded">
         <div class="panel">
-          <!-- Content for first panel -->
+            <div class="panel-body">
+                <div>ASR</div>
+                <div id="logASR"></div>
+            </div>
         </div>
         <div class="panel">
-          <!-- Content for second panel -->
+            <div class="panel-body">
+                <div>SLU</div>
+                <div id="logSLU"></div>
+            </div>
         </div>
       </div>
     </div>
