@@ -92,3 +92,219 @@ body {
     justify-content: center;
     flex-direction: row;
 }
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    font-size:25px;
+    top: 50%;
+    left: 50%;
+    text-wrap: nowrap;
+    text-align: justify;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-end-top {
+    margin: 0;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-end-bottom {
+    margin: 0;
+    position: absolute;
+    top: 73%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-end-bottom-lower {
+    margin: 0;
+    position: absolute;
+    top: 78%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.center-end-bottom-href {
+    margin: 0;
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    text-wrap: nowrap;
+    text-align: justify;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.centerImage {
+    margin: 0;
+    position: absolute;
+    
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border: 2px solid rgb(12, 12, 12);
+
+}
+
+
+.button_start{
+    width: 10%;
+    border: none;
+    background-color: #04AA6D;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    top: 80%;
+    margin-top: 5%;
+}
+.button_next{
+    width: fit-content;
+    border: none;
+    background-color: #dee8e9;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+.higher-center {
+    margin: 0;
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;
+}
+.high-center {
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    text-wrap: nowrap;
+    text-align: justify;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.float-container {
+    /* border: 3px solid #1b0404; */
+    padding-top: 10px;
+    height: 95%;
+    margin: 0px 0px 0px 0px
+}
+
+.float-container-top {
+    /* border: 3px solid #f60808; */
+    /* border-bottom: 0.5px solid; */
+    padding-top: 0px;
+    height: 7%;
+    display: flex;
+    flex-direction: row;
+    align-items: justify;
+}
+
+.float-container-top-left {
+    /* border: 3px solid #f60808; */
+    margin-left: 20px;
+    padding-top: 0px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: justify;
+}
+
+.float-container-top-right {
+    /* border: 3px solid #1b0404; */
+    padding-top: 0px;
+    margin-right: 20px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: justify;
+}
+
+.whole-float-container {
+    /* border: 3px solid #1b0404; */
+    background-color: yellow;
+    padding-top: 5px;
+    height: 95%;
+    margin: 0px 0px 0px 0px
+}
+
+.microphone {
+    width: 100px;
+    height: 50px;
+    background-color: #333;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    
+}
+
+.volume-meter {
+    width: 0;
+    height: 80%;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    margin-bottom: 1px;
+    margin-right: 5px;
+    
+}
+.float-child {
+    width: 40%;
+    float: left;
+    padding: 20px;
+    margin-left: 5%
+}  
+.dropdown-content {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: #eaebee;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.custom-swal-modal {
+    width: 450px; /* Adjust the width as needed */
+    top: 50px;    /* Adjust the top position as needed */
+}
+
+br-instructions {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 14; /* change this to whatever height you want it */
+}
+
+br-lake {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 14; /* change this to whatever height you want it */
+}
+
+br-animals-lake {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 10; /* change this to whatever height you want it */
+}

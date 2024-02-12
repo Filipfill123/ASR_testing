@@ -40,13 +40,16 @@ const animals = ["mamut", "kráva", "aberdeen", "aberdín", "aberdýn", "adax", 
 
 function startButton() {
     if (!recognizing){
+        console.log("starting asr recognizing...")
         speechCloud.asr_recognize()
         recognizing = true
+        startTimer()
     }
 }
 
 function stopButton() {
     if(recognizing){
+        console.log("stopping asr recognizing...")
         speechCloud.asr_pause()
         stopButtonClicked = true  
         recognizing = false  
