@@ -1,53 +1,136 @@
 <html>
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
-      <!-- UI libraries -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <script src="js/jquery-1.11.0.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
-
-      <script src="https://cak.zcu.cz:9444/speechcloud.js" type="text/javascript"></script>
-      <script src="js/control.js"></script>
-      <link rel="stylesheet" href="css/misc.css">
-
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Výzkum řeči
+    </title>
     <audio id="audioout"></audio>
-    <div style="display: flex; flex-direction: column; justify-content: center;">
-    <div class="progress col-md-8 col-md-offset-2 col-xs-12">
-        <div class="volume-gr progress-bar progress-bar-success" style="width: 0%">
-        </div>
-        <div class="volume-yl progress-bar progress-bar-default" style="width: 0%">
-        </div>
-        <div class="volume-rd progress-bar progress-bar-danger" style="width: 0%">
-        </div>
-    </div>
-    <div class="inputDiv">
-        
-    <label for="number_to_calculate">Zadejte číslo:</label>
-    <input type="number" id="number_to_calculate" name="number_to_calculate" required
-        min="0" max="1000" value="0">
-        
-    <button style="margin: 0px 25px 0px 5px;" id="send_number">Mocni jako ďábel</button>
-    
-    <button style="margin: 0px 15px 0px 15px;" id="asr_start_stop">Start ASR</button>
-    <button id="send_message_empty">Click me!</button>
-    </div>
-    
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div>Historie rozpoznaných promluv</div>
-                    <div id="log"></div>
-                </div>
-            </div>
-        </div>    
-    </div>
-</div>
-  </body>
-</html>
+    <!-- Styles -->
+    <!-- <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
+    <!-- Scripts and libraries -->
+    <!-- UI libraries -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- custom libraries-->
+    <script src="https://cak.zcu.cz:9444/speechcloud.js" type="text/javascript"></script>
+    <script src="js/control.js"></script>
+    <link rel="stylesheet" href="css/misc.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</head>
+
+    <body>
+    <div id="whole_document" class="whole-float-container">
+
+        <div id="headerContainer" class="float-container-top">
+            <div class="float-container-top-left">
+                <button id="startButton" style="font-size: 15px; margin: 10px 30px 0px 0px; padding-top: 0px; height: 25px" onclick="startButton()">Start</button>
+                <button id="stopButton" style="font-size: 15px; margin: 10px 30px 0px 0px; padding-top: 0px; height: 25px" onclick="startButton()">Stop</button>
+            </div>
+            <div class="float-container-top-right"> 
+                <span id="countdown" style="margin-top: 10px; margin-left: 25px; font-size: large;">30s</span>
+            </div>
+        </div>
+
+        <div id="demoDescription" style="display: block;" class="float-container">
+
+            <div>
+                <img src="./obrazek_barevny.jpg" style="top: 35%;" class="centerImage" width="50%" height="45%">
+                <span style="border-color: blueviolet; height: 20px; width: 80%;"> TADY BUDE ASR</span>
+                <span style="border-color: rgb(226, 43, 52); height: 20px; width: 80%;"> TADY BUDE SLU</span>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        // SIP session, tj. hovor
+        var session;
+        let toCopy = ""
+
+        // Výchozí URI, odkud se stáhne konfigurace ASR+TTS - probably unneccesary for now
+        var SPEECHCLOUD_URI = "https://cak.zcu.cz:9444/index.html?devel/polakf/base";
+
+        // Proměnná pro udržení odkazu na řídící WebSocket
+        var SPEECHCLOUD_WS = null;
+        $(document).ready(function () {
+            var call_timeout = null;
+
+            //var model_uri = "https://speechcloud.kky.zcu.cz:9443/v1/speechcloud/devel/polakf/base"
+            //var model_uri = "https://cak.zcu.cz:9443/v1/speechcloud/devel/polakf/base"
+            //var model_uri = "https://hydra5.kky.zcu.cz:9443/v1/speechcloud/devel/polakf/base"
+            //var model_uri = "https://prod.speechcloud.kky.zcu.cz:9443/v1/speechcloud/devel/polakf/base"
+            var model_uri = "https://prod.speechcloud.kky.zcu.cz:9443/v1/speechcloud/diadem-dev"
+
+            var options = {
+                uri: model_uri,
+                tts: "#audioout",
+                disable_audio_processing: true
+            }
+
+            var speechCloud = new SpeechCloud(options);
+
+            window.speechCloud = speechCloud
+
+            speechCloud.init();
+
+            /* Při příchodu asr_ready (ASR připraveno) */
+            speechCloud.on('asr_ready', function () {
+                // po pripojeni na ASR se odblokuje tlacitko Registrovat
+                console.log("speechCloud clientId: " + speechCloud.config["client_id"])
+            });
+
+
+            speechCloud.on('asr_audio_record', function (msg) {
+                console.log("audio record: ", msg)
+                // pokud dostane audio, posle do python DM a ten ulozi ASR_audio
+
+                var params = {
+                    topic: "ASR_audio",
+                    msg: msg
+                }
+                speechCloud.dm_send_message({ data: JSON.stringify(params) })
+                
+                //hlog("<b>ASR audio</b> <a href='"+ msg.uri +"' target='_blank'>" + msg.id + "</a>, tstamp="+msg.tstamp);
+            });
+
+            speechCloud.on('asr_signal', function (msg) {
+                
+                //hlog("<b>ASR audio</b> <a href='"+ msg.uri +"' target='_blank'>" + msg.id + "</a>, tstamp="+msg.tstamp);
+            });
+
+            speechCloud.on('sc_start_session', function (msg) {
+                console.log("sc_start_session heeeeere: ", msg)
+            });
+            /* Při příchodu ASR výsledku */
+            speechCloud.on('asr_result', function (msg) {
+
+                if (msg.partial_result) {
+                    console.log("asr msg partial result: ", msg.partial_result)
+                    hlogAsr("ASR partial result: " + msg.partial_result)
+                }
+                else if(msg.result){
+                    console.log("asr msg result: ", msg.result)
+                    hlogAsr("ASR full result: "+ msg.result)
+                }
+
+            });
+            /* Při příchodu SLU výsledku */
+            speechCloud.on('slu_result', function (msg) {
+                console.log("slu msg result: ", msg.result)
+                hlogSlu("SLU result: "+ msg.result)
+            });
+
+        })
+
+
+    </script>
+</body>
+
+</html>

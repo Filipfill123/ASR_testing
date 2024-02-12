@@ -25,28 +25,22 @@
 
 </head>
 
-    <body>
-    <div id="whole_document" class="whole-float-container">
-
-        <div id="headerContainer" class="float-container-top">
-            <div class="float-container-top-left">
-                <button id="startButton" style="font-size: 15px; margin: 10px 30px 0px 0px; padding-top: 0px; height: 25px" onclick="startButton()">Start</button>
-                <button id="stopButton" style="font-size: 15px; margin: 10px 30px 0px 0px; padding-top: 0px; height: 25px" onclick="startButton()">Stop</button>
-            </div>
-            <div class="float-container-top-right"> 
-                <span id="countdown" style="margin-top: 10px; margin-left: 25px; font-size: large;">30s</span>
-            </div>
+<body>
+    <div class="container">
+      <div class="header">
+        <button id="startButton">Start</button>
+        <button id="stopButton">Stop</button>
+        <div id="countdown">10</div>
+      </div>
+      <div class="content">
+        <img src="./obrazek_barevny.jpg" alt="Your Image">
+        <div class="panel">
+          <!-- Content for first panel -->
         </div>
-
-        <div id="demoDescription" style="display: block;" class="float-container">
-
-            <div>
-                <img src="./obrazek_barevny.jpg" style="top: 35%;" class="centerImage" width="50%" height="45%">
-                <span style="border-color: blueviolet; height: 20px; width: 80%;"> TADY BUDE ASR</span>
-                <span style="border-color: rgb(226, 43, 52); height: 20px; width: 80%;"> TADY BUDE SLU</span>
-            </div>
+        <div class="panel">
+          <!-- Content for second panel -->
         </div>
-        </div>
+      </div>
     </div>
 
     <script>
