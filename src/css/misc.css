@@ -37,7 +37,7 @@ img {
   }
   
   .image-container img {
-    margin-left: -50%; /* Move the image a bit to the left */
+    margin-left: 50%; /* Move the image a bit to the left */
   }
   
   .panels-container {
