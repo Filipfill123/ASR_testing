@@ -30,8 +30,9 @@ img {
   }
   
 .panel {
-    width: 80%;
-    max-width: 600px;
+    width: 95%;
+    max-width: 900px;
+    max-height: 350px;
     margin: 20px auto;
     background-color: #f9f9f9;
     padding: 20px;
