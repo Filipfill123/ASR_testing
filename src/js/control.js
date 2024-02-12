@@ -77,6 +77,7 @@ function startTimer() {
         if (--timer < 0) {
             console.log(`duration done..`)   
             clearInterval(countdown);
+            appReset()
             }
     }, 1000);}
 
