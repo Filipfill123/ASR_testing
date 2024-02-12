@@ -60,7 +60,7 @@ function stopButton() {
 function startTimer() {
 
     var duration = 30 // can be changed
-
+    let countdown_name = "countdown"
     display = document.querySelector('#' + countdown_name);
     var timer = duration, seconds;
 
