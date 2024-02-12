@@ -14,7 +14,7 @@ setuptools.setup(
     author_email="polakf@kky.zcu.cz",
     description="Example dialog for testing ASR by TTS",
     url="https://dialogs.kky.zcu.cz/asrtesting/index.html",
-    data_files=[("static",        ["src/index.html"]), 
+    data_files=[("static",        ["src/index.html",  "src/obrazek_barevny.jpg"]), 
                 ("static/css",    [ "src/css/bootstrap.min.css", "src/css/misc.css"]),
                 ("static/js",     [ "src/js/bootstrap.min.js", "src/js/control.js", "src/js/jquery-1.11.0.min.js"])
                 ],
