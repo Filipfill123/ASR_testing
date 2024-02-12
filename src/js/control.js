@@ -1,12 +1,6 @@
 let stopButtonClicked = false
 let recognizing = false
 
-function onBodyLoad() {
-    document.getElementById('testDate').value = new Date().toDateInputValue();
-
-    console.log("timestamp of bodyLoad: " + getTimeForConsoleLog())
-    copyIntoClipboard(getTimeForConsoleLog() + " timestamp of bodyLoad: " + getTimeForConsoleLog())
-}
 function getTimeForConsoleLog(){
     const currentDate = new Date();
     const year = currentDate.getFullYear();
